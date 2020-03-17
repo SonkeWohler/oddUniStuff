@@ -1,0 +1,159 @@
+\documentclass{article}
+
+\usepackage[top=2.0cm]{geometry}
+\usepackage[sort&compress]{natbib}
+%\usepackage{biblatex}
+\usepackage{url}
+\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage[format=hang,font=footnotesize]{caption}
+\usepackage{makecell}
+\usepackage{subcaption}
+\usepackage{placeins}
+\usepackage{needspace}
+\usepackage{wrapfig}
+\usepackage{csquotes}
+\usepackage[leftcaption]{sidecap}
+%\usepackage{floatrow}
+\usepackage{subfloat}
+\usepackage{framed}
+\usepackage{lipsum}
+\usepackage[english]{isodate}
+\usepackage{subfiles}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage[titletoc]{appendix}
+\usepackage[nottoc]{tocbibind}
+\usepackage{hyperref}
+%\usepackage[toc]{glossaries}
+\usepackage{cleveref}
+
+
+\begin{document}
+   \section{Dependencies}
+  
+  The project was implemented in \href{https://openjdk.java.net/projects/jdk/11/}{Java} v11.0.2, making use of \href{http://maven.apache.org/}{Maven} v3.6.0. Further top level dependencies, as specified in pom, are:
+  \begin{itemize}
+    \item \href{https://maven.apache.org/plugins/maven-compiler-plugin/index.html}{Apache Maven Compier Plugin} v3.8.0
+    \item \href{https://maven.apache.org/surefire/maven-surefire-plugin/}{Maven Surefire Plugin} v2.19.1
+    \item \href{https://junit.org/junit5/}{JUnit} v5.3.2 for Unit Testing
+    \item Optionally the \href{https://maven.apache.org/plugins/maven-javadoc-plugin/}{Maven Javadoc Plugin} v3.0.1
+  \end{itemize}
+  Additionally the demonstration software used makes use of \href{https://openjfx.io/}{JavaFX} v11.0.1, with pom dependencies beign the following:
+  \begin{itemize}
+    \item JavaFX Controls v11
+    \item JavaFX fxml v11
+    \item \href{https://maven.apache.org/plugins/maven-shade-plugin/}{Maven Shade Plugin} v 3.2.1
+  \end{itemize}
+  
+  \section{Modules}
+  
+  Note:
+  \\\\
+  For more details please refer to the \textit{javadoc} or visit \textit{GitHub} at \url{https://github.com/SonkeWohler/analyser/tree/final-presentation-additions}.
+  
+  \paragraph{Static classes} here means that the class is \textit{final} and does not provide a \textit{public Constructor}. Such classes should not be instantiated but instead serve \textit{static} functionality.
+  
+  \subsection{Base}
+  
+  Contains Data Types and helper classes that are used throughout the project and will also be used in any future additions to it. It is intended much in analogy to the \emph{java.util} package of the language, providing data types used throughout the language. 
+  \\\\
+  Most notably the DataSet family is the primary data type. It is a Collection of data points that stores and allows access to x-y data points. Rather than simply indexing each data point, they can also be accessed by their \emph{xValue}, with \textit{DataSet} mapping between the latter and the index that the \emph{yValue} of the data point is stored under. The focus is currently on the \textit{ValueDataSet}, which stores data points, their classified functions and whether or not they are considered valid for analysis. On the other hand, however, NestedDataSet subclasses store entire DataSet instances and are intended for higher dimensional data (i.e. x-y-z ...) and proper storage of these.
+  \\\\
+  Additionally the Base package also contains helper classes, that perform commonly used functions such as checking if two values are approximately equal within some set precision, or taking derivatives of \textit{DataSets}.
+  
+  \subsubsection*{types}
+  
+  This package contains those classes that should be used as advanced data types. Their architectural role is comparable to \textit{java.util.Collection} or \textit{java.util.Double}.
+  
+  \subsubsection*{types.value}
+  
+  \paragraph{ValuePair} simply holds two values of a subclass of \textit{Number}, an \textit{xValue} and a \textit{yValue}.
+  
+  \subsubsection*{types.dataSet}
+  
+  \paragraph{DataSet} is the superclass of all \textit{dataSet} classes. Extends \textit{java.util.Collection}.
+  
+  \paragraph{ValidityDataSet} extends \textit{DataSet} and adds functionality to mark entries as valid or invalid.
+  
+  \paragraph{ValueDataSet} extends \textit{ValidityDataSet} and adds functionality related to numerical entries, chief among these the ability to classify segments of data points.
+  
+  \paragraph{PairDataSet} extends \textit{ValueDataSet} and adds functionality specific to holding \textit{ValuePair} entries.
+  
+  \paragraph{NestedDataSet} extends \textit{DataSet} and adds functionality to hold other \textit{DataSets} as entries.
+  
+  \paragraph{NestedValueDataSet} extends \textit{ValueDataSet} and adds functionality specific to holding \textit{ValueDataSets}.
+  
+  \subsubsection*{helpers}
+  
+  All helper classes are \textit{static}. Their architectural role is comparable to \textit{java.util.Math} or \textit{java.util.Object\textbf{s}}
+  
+  \paragraph{Comparator}  provides methods to compare values, in particular to see if they are equal within a certain precision.
+  
+  \paragraph{Tangenter} is the core functionality class. It provides various derivative related functionality.
+  
+  \paragraph{Parser} allows more automatic conversions between basic classes.
+  
+  \subsubsection*{maths}
+  
+  This package is \textit{Deprecated} at this time and has been replaced by \textit{helpers}.
+  
+  \subsection{Generator}
+  
+  The Generator package is mostly for demonstration and testing purposes. It generates somewhat random data points based on the input, for example linear curves that become parabolic, exponential curves etc. It is capable of some gaussian noise generation, but is currently rather limited in functionality.
+  \\\\
+  In the future synthetic Data may become more significant to assess the validity of our analysis and compare it to real data, but at this time that is far away.
+  
+  \subsubsection*{main}
+  
+  This package provides the core generator functionality.
+  
+  \paragraph{GenMain} allows generating \textit{ValueDataSets} that represent the specified data by making use of \textit{GenSegment}.
+  
+  \paragraph{GenSegment} can be used to generate data points of a specified function.
+  
+  \subsubsection*{presInterface}
+  
+  An interface package that allows the \textit{GUI} module to make use of \textit{Generator} module functionality.
+  
+  \paragraph{PresGenerator} provides the \textit{GUI} with an interface to access \textit{GemnMain} methods.
+  
+  \subsection{GUI}
+  
+  The guiPresentation package is solely for demonstration purposes and should be minimalist as such. It is soon to be replaced when this project is integrated in the greater framework.
+  
+  \subsubsection*{application}
+  
+  The starting point for the application, based on \textit{javafx.application} functionality.
+  
+  \paragraph{GUIMain} extends \textit{javafx.application.Application} and initiates \textit{JavaFX} related functionality.\\
+  Also implements \textit{GUIMainForFX}.
+  
+  \paragraph{Main} simply initiates \textit{GUIMain} routines to initiate the software.
+  
+  \subsubsection*{fxEncapsulation}
+  
+  Provides encapsulation of this module to prevent JavaFX from having unnecessary access.
+  
+  \paragraph{GUIMainForFX} encapsulates \textit{GUIMain}.
+  
+  \subsubsection*{charts}
+  
+  Contains classes that allow the display of data within \textit{javafx.scene.chart} enviroonments.
+  
+  \paragraph{DisplayDataSet} provides two \textit{javafx.scene.LineChart} objects and handdles the display of a \textit{ValueDataSet}, both the values it contains and their assigned classifications.
+  
+  \subsubsection*{views}
+  
+  Contains all display screens in accordance with the \textit{Model-View-Controller} pattern specified by Oracle for \textit{JavaFX} applications.
+  
+  \subsubsection*{views.honoursMainView}  
+  
+  Contains functionality for the only screen used at this time.
+  
+  \paragraph{HonoursMainController} is the Controller class handling the java aspects of this \textit{view}.
+  
+\end{document}

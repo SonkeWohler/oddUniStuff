@@ -1,0 +1,10 @@
+del *.aux
+del *.bbl
+del *.blg
+del *.glo
+del *.ist
+del *.log
+del *.out
+del *.synctex.gz
+del *.toc
+del *.glsdefs

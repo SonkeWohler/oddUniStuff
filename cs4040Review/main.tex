@@ -1,0 +1,96 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{{\large Peer Review for }
+	\\{\LARGE CS4040 Sorting Algorithm Comparison}}
+\author{Original Article by Vladimir Yesipov
+	\\ {\small Review by Sonke Wohler}}
+\date{\today}
+
+\begin{document}
+  \maketitle
+    \section{Abstract, Introduction and Related Work}	
+      \subsection{ Does the Abstract adequately reflect the contents of the Report?}
+        No,
+        \\
+        The majority of the Abstract provides unnecessary detail on the experimental design while mentions of the conclusion and research question/hypotheses are omitted.
+      \subsection{ Does the Introduction represent the "Big Picture"?}
+        Yes,
+        \\
+        though some additional Information on experimental design is provided quite early and out of context.
+      \subsection{ Does related work contain adequate references to related work and discussion of that work?}
+        Yes, and in some detail. 
+      \subsection{ Is a research question presented and tied into the literature review and background?}
+        No,
+        \\
+        the appropriate section instead discusses the Experimental Design while the Hypotheses are stated elsewhere and not appropriately for hypotheses but rather as summaries of each Algorithm. The majority of each summary is not tested in the experiment despite being clearly marked as part of the hypothesis.
+        \\
+        Multicore processing is mentioned several times throughout the first half of the report, in particular in the related work, but never tied into the research question, hypotheses or experiment itself and omitted in discussion and conclusion.
+        
+    \section{Hypotheses and Algorithms}
+      \subsection{ Are hypotheses appropriate to the research question?}
+        No,
+        \\
+        Hypotheses are not clearly stated and testable but rather represent a simple summary of each Algorithm. See above question for detail.
+      \subsection{ Are the systems or algorithms being evaluate properly explained?}
+        Yes, quite detailed explanations on their expected performance and notes on relevant factors are provided.
+         
+    \section{Experimental Design}
+      \subsection{ Is the experiment described in sufficient detail to be replicated?}
+        Yes, almost too much.
+      \subsection{ Does the experimental design enable the hypothesis to be adequately tested?}
+        Cannot be answered well, as hypotheses are badly stated.
+        \\
+        However, the experimental design would adequately test some of the performance relevant behaviours of the algorithms.
+      \subsection{ Are other potentially influencing factors controlled for and/or managed?}
+        Yes, within reason. Not all factors can be accounted for perfectly considering the scale of the experiment, but this is true for the course in general.
+      \subsection{ Are representative test cases selected? If human subjects are used are they appropriate?}
+        Yes, though it is repeatedly mentioned that other test cases would better visualize other aspects of some algorithms. This could have been noted as potential future work but was not suggested as such or particularly covered in related work.
+    \section{Results}
+      \subsection{ Are there an appropriate number of figures presenting results of the experiments?}
+        Yes, there are Figures for all Algorithms that were tested.
+      \subsection{ Were appropriate statistical tests performed and p-values presented?}
+        No.
+        \\
+        t-Tests were performed for all methods and all related Data presented, but both the report and presented figures suggest the Data represent functions where t-Tests are not applicable and Regressions should have been performed instead.
+        \\\\
+        While the statistical tests are somewhat extensive they are meaningless and not appropriate.
+      \subsection{ Is a qualitative analysis given of mistakes and poor performance?}
+        Yes, but lacking.
+        \\
+        Most analysis appears to be a repetition of the Research Question and many statements are made that appear to interpret results but that do not relate to the Data in any manner.
+        
+    \section{Discussion and Conclusion}  
+      \subsection{ Does the Discussion follow from the results?}
+        Not entirely,
+        \\
+        A number of conclusions were drawn from the Results and based on the statistical tests performed.
+        \\
+        However others did not relate to the Results or the Research Question and lack any citation to suggest they are not misinterpretations of Data.
+      \subsection{ Does the discussion present key insights from the results?}
+        Yes,
+        \\
+        the discussion correctly identifies those Algorithms that in these tests performed best and makes attempts to explain some trends in the Data that were not predicted before the experiment.
+      \subsection{ Is sensible future work proposed?}
+        Yes but not particularly well.
+        \\
+        some examined algorithms are noted to perform better on partly sorted sets than those that performed well in this experiment, but this is not mentioned when suggesting future work. Instead the proposed work involves combining algorithms and simply expanding the number of algorithms to be compared, which fails to relate to any part of the report.
+      \subsection{ Does the conclusion summarise the key findings of the report?      }
+        Yes, but:
+        \\
+        it also makes claims that were not supported by the Data and presents them as findings.
+  \section{Further Remarks}
+    \subsection{Language}
+      The quality of the language is quite bad and negatively affects the reader's ability to understand the report. Some sentences are incomprehensible and this is particularly true for the introduction and abstract. However, later sections show that the author would have been able to remedy this by reviewing their work pre-submission and the report would have greatly benefited from this.
+      \\\\
+      Inconsistencies in tense and person should also be edited but do not affect the reader's ability to understand the report.
+    \subsection{Apparent Understanding of Scientific Method}
+      In this report the student showed little understanding of the Scientific Method or Theory formation. Hypotheses were badly formulated and taken to include untestable and irrelevant aspects of each algorithm while not clearly stating what part of the hypotheses were actually being investigated.
+      \\\\
+      Statistical Analysis was completely misunderstood and is as a result by enlarge irrelevant to the discussion.
+      \\\\
+      Parts of the discussion presents characteristics of the algorithms that were not tested for in the experiment and not observable in the Data, but that instead were taken from the literature and presented as key findings of the experiment.
+    \subsection{Structure}
+      By enlarge the report lacks structure with section headings at times unrelated to the content (in particular sections 3 and 4) and the order in which information is presented to the reader at times lacking sense.
+	
+\end{document}
